@@ -1,0 +1,8 @@
+#Ignore API key file
+.APIKEY
+
+#Ignore pychache file
+._pycache_
+
+#Ignore enviornment file
+.env
