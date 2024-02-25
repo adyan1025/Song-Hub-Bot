@@ -27,11 +27,24 @@ async def on_message(message):
             await top_tracks(message.channel, artist)
         except Exception as e:
             await message.channel.send("That artist cannot be found.")
+    
+    if command == '.related':
+        artist = " ".join(args)
+        try:
+            await related(message.channel, artist)
+        except Exception as e:
+            await message.channel.send("That artist cannot be found.")
 
 async def top_tracks(ctx, artist):
     tracks = music_commands.getTrack(artist)
     embed=discord.Embed(title="Top 10 Tracks", color=0xa30000)
     embed.add_field(name=music_commands.getArtist(artist), value=tracks, inline=False)
+    await ctx.send(embed=embed)
+
+async def related(ctx, artist):
+    artists = music_commands.getRelatedArtists(artist)
+    embed=discord.Embed(title="Related Artists", color=0xa30000)
+    embed.add_field(name=music_commands.getArtist(artist), value=artists, inline=False)
     await ctx.send(embed=embed)
     
 

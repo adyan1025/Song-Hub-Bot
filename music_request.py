@@ -47,3 +47,10 @@ def get_songs_by_artists(token, artist_id):
     result = get(url, headers=headers)
     json_result = json.loads(result.content)["tracks"]
     return json_result
+
+def get_related_artists(token, artist_id):
+    url = f"https://api.spotify.com/v1/artists/{artist_id}/related-artists?country=US"
+    headers = get_auth_headers(token)
+    result = get(url, headers=headers)
+    json_result = json.loads(result.content)["artists"]
+    return json_result
