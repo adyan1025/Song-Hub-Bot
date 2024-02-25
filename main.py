@@ -24,8 +24,21 @@ async def on_message(message):
     if command == '.top10':
         artist = " ".join(args)
         try:
-            await message.channel.send(music_commands.getTrack(artist))
+            await top_tracks(message.channel, artist)
         except Exception as e:
             await message.channel.send("That artist cannot be found.")
 
+async def top_tracks(ctx, artist):
+    tracks = music_commands.getTrack(artist)
+    embed=discord.Embed(title="Top 10 Tracks", color=0xa30000)
+    embed.add_field(name=music_commands.getArtist(artist), value=tracks, inline=False)
+    await ctx.send(embed=embed)
+    
+
 client.run(file_content)
+
+'''
+embed=discord.Embed(title="Top 10 Tracks", color=0xa30000)
+embed.add_field(name=getArtist(artist), value=tracks, inline=False)
+await ctx.send(embed=embed)
+'''
