@@ -36,9 +36,3 @@ async def top_tracks(ctx, artist):
     
 
 client.run(file_content)
-
-'''
-embed=discord.Embed(title="Top 10 Tracks", color=0xa30000)
-embed.add_field(name=getArtist(artist), value=tracks, inline=False)
-await ctx.send(embed=embed)
-'''
